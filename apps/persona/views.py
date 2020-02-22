@@ -63,11 +63,53 @@ def crear_anuncio(request):
 			context = {
 			'mensaje': mensaje
 			}
-			return render (request, 'status.html',context)
+			return render (request, 'anuncio/status_anuncio.html',context)
 	context = {
 		'formulario': formulario
 	}
 	return render(request, 'anuncio/crear_anuncio.html', context)
+
+def modificar_anuncio(request):
+	anuncio_id = request.GET['id']
+	anuncio = Anuncio.objects.get(anuncio_id = anuncio_id)
+	if request.method == 'POST':
+		formulario=FormularioModificarAnuncio(request.POST)
+		if formulario.is_valid():
+			datos=formulario.cleaned_data
+			anuncio.titulo=datos.get('titulo')
+			anuncio.puesto=datos.get('puesto')
+			anuncio.descripcion=datos.get('descripcion')
+			anuncio.area=datos.get('area')
+			anuncio.pais='Ecuador'
+			anuncio.provincia=datos.get('provincia')
+			anuncio.ciudad=datos.get('ciudad')
+			anuncio.direccion=datos.get('direccion')
+			anuncio.save()
+			mensaje = 'Se ha modificado el anuncio correctamente'
+			context = {
+			'mensaje': mensaje
+			}
+			return render (request, 'anuncio/status_anuncio.html',context)
+	else:
+		formulario=FormularioModificarAnuncio(instance = anuncio)
+		context = {
+			'anuncio': anuncio,
+			'formulario': formulario,
+		}
+		return render(request, 'anuncio/modificar_anuncio.html', context)		
+
+
+
+def eliminar_anuncio(request):
+	formulario = FormularioAnuncio(request.POST)
+	anuncio_id = request.GET['id']
+	anuncio = Anuncio.objects.get(anuncio_id = anuncio_id)
+	anuncio.delete()
+	mensaje = 'Se ha eliminado el anuncio correctamente'
+	context = {
+	'mensaje': mensaje
+	}
+	return render (request, 'anuncio/status_anuncio.html',context)
 
 def postular(request):
 	formulario = FormularioPostulacion(request.POST)
@@ -89,7 +131,7 @@ def postular(request):
 			context = {
 			'mensaje': mensaje
 			}
-			return render (request, 'status.html',context)
+			return render (request, 'anuncio/status_anuncio.html',context)
 	context = {
 		'formulario': formulario
 	}

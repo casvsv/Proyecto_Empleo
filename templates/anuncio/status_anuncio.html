@@ -39,7 +39,7 @@
                     <div class="row align-items-center no-gutters">
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
-                                <a href="#">
+                                <a href="index.html">
                                     <img src="{% static 'img/logo.png' %}" alt="">
                                 </a>
                             </div>
@@ -49,18 +49,28 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="#">Inicio</a></li>
-                                        <li><a href="#">Información</a></li>
-                                        <li><a href="#">Contacto</a></li>
+                                        <li><a href="about.html">Información</a></li>
+                                        <li><a href="contact.html">Contacto</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="log_chat_area d-flex align-items-center">
-                                    <button type="button" class="btn btn-outline-danger" href="{%url 'cerrar_sesion' %}">    
+                                <a href="#test-form" class="login popup-with-form">
+                                    <button type="button" class="btn btn-outline-primary">    
                                     <i class="flaticon-user"></i>
-                                    <span>Cerrar Sesión</span>
+                                    <span>Iniciar Sesión</span>
                                     </button>
+                                </a>
+                                <div class="log_chat_area d-flex align-items-center">
+                                    <a href="#test-form" class="login popup-with-form">
+                                        <button type="button" class="btn btn-outline-success">
+                                        <i class="flaticon-chat"></i>
+                                        <span>Soy Empresa</span>
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -73,60 +83,21 @@
     </header>
     <!-- header-end -->
 
-
-    <!-- core_features_start -->
-    <div class="core_features">
-        <div class="container">
-            <div class="border-bottm">
-            	<br>
-            	<br>
-            	<br>
-            	<br>
-                <div class="row">
-                    <div class="col-xl-6 col-md-6">
-                        <div class="featuures_heading">
-                            <h3>Empleos</h3>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <a class="genric-btn success circle" href="crear_anuncio?celular=0939694489">Crear anuncio</a>
-            </div>
-
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                            aria-labelledby="nav-home-tab">
-                            <div class="row">
-                            	{% for c in lista%}
-                                <div class="col-xl-6">
-                                    <a class="btn btn-danger circle" href="eliminar_anuncio?id={{c.anuncio_id}}">X</a>
-                                    <a class="btn btn-warning circle" href="modificar_anuncio?id={{c.anuncio_id}}">M</a>
-                                    <div class="single_features">
-                                        <div class="icon"><i class="flaticon-browser"></i></div>
-                                        <div class="features_info">
-                                            <h4>{{c.titulo}}</h4>
-                                            <h5>{{c.puesto}}</h5>
-                                            <p>{{c.descripcion}}</p>
-                                            <p>{{c.area}}</p>
-                                            <p>{{c.pais}}</p>
-                                            <p>{{c.provincia}}</p>
-                                            <p>{{c.ciudad}}</p>
-                                            <p>{{c.direccion}}</p>
-                                            <a class="genric-btn primary circle" href="postular?celular=0939694489&id={{c.anuncio_id}}">Postular</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            	{%endfor%}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1 overlay2">
+           <div class="container">
+                <center>
+    		<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">{{mensaje}}</h4>
+  <hr>
+</div>
+	<a href="{%url 'anuncios'  %}"><button class="btn btn-outline-success" type="button">Regresar</button></a>
+    	</center>
             </div>
         </div>
     </div>
-    <!-- core_features_end -->
+    <!-- slider_area_end -->
 
     <!-- footer -->
     <footer class="footer">
@@ -201,7 +172,7 @@
                                 <input type="text" placeholder="Enter your mail">
                                 <button type="submit">Sign Up</button>
                             </form>
-                            <p class="newsletter_text">Suscribete para obtener obtener las ultimas actualizaciones</p>
+                            <p class="newsletter_text">Subscribe newsletter to get updates</p>
                         </div>
                     </div>
                 </div>
@@ -214,7 +185,7 @@
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> Casv INC. <i class="fa fa-heart-o" aria-hidden="true"></i>  <a href="#" target="_blank"></a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
