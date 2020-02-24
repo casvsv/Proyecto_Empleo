@@ -40,6 +40,25 @@ def mostrar_anuncios(request):
 	}
 	return render(request,'anuncio/anuncios.html', context)
 
+def ver_postulaciones(request):
+	codigo = request.GET['codigo']
+	anuncio=Anuncio.objects.get(anuncio_id=codigo)
+	lista = Postulacion.objects.filter(anuncio_id = codigo)
+	context={
+		'lista': lista,
+		'anuncio': anuncio.titulo,
+	}
+	return render(request,'postulacion/postulaciones.html', context)
+
+def buscar_anuncios(request):
+	consulta = request.GET['consulta']
+	lista=Anuncio.objects.filter(titulo__contains=consulta).order_by('titulo')	
+	context={
+		'lista': lista
+	}
+	return render(request,'anuncio/anuncios.html', context)
+
+
 def crear_anuncio(request):
 	formulario = FormularioAnuncio(request.POST)
 	celu = request.GET['celular']

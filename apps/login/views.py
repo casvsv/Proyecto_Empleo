@@ -14,7 +14,7 @@ def ingresar(request):
 			if user is not None:
 				if user.is_active:
 					login(request, user)
-					return HttpResponseRedirect(reverse('cliente'))
+					return HttpResponseRedirect(reverse('persona'))
 				else:
 					print ('Usuario desactivado')
 			else:
@@ -24,7 +24,7 @@ def ingresar(request):
 	context = {
 		'formulario' : formulario, 
 	}
-	return render (request, 'login/autenticar.html', context)
+	return render (request, 'home_page', context)
 
 def cerrar(request):
 	logout(request)
@@ -32,4 +32,4 @@ def cerrar(request):
 	context = {
 		'formulario' : formulario, 
 	}
-	return render (request, 'login/autenticar.html', context)
+	return render (request, 'home_page', context)

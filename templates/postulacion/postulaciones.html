@@ -90,7 +90,6 @@
                     </div>
                 </div>
                 <br>
-                <a class="genric-btn success circle" href="{%url 'crearanuncios'  %}?celular=0939694489" href="crear_anuncio?celular">Crear anuncio</a>
             </div>
 
             <div class="row">
@@ -98,32 +97,22 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                             aria-labelledby="nav-home-tab">
+                            <h1>{{anuncio}}</h1>
+                            <hr>
                             <div class="row">
                             	{% for c in lista%}
-                                
                                 <div class="col-xl-6">
-                                    <a class="btn btn-danger circle" href="eliminar_anuncio?id={{c.anuncio_id}}">X</a>
-                                    <a class="btn btn-warning circle" href="modificar_anuncio?id={{c.anuncio_id}}">M</a>
-                                    <a href="{%url 'ver_postulaciones' %}?codigo={{c.anuncio_id}}">
                                     <div class="single_features">
-                                        <div class="icon"><i class="flaticon-browser"></i></div>
+                                        <div class="icon"><i class="flaticon-like"></i></div>
                                         <div class="features_info">
-                                            <h4>{{c.titulo}}</h4>
-                                            <h5>{{c.puesto}}</h5>
-                                            <p>{{c.descripcion}}</p>
-                                            <p>{{c.area}}</p>
-                                            <p>{{c.pais}}</p>
-                                            <p>{{c.provincia}}</p>
-                                            <p>{{c.ciudad}}</p>
-                                            <p>{{c.direccion}}</p>
-                                            <a class="genric-btn primary circle" href="{%url 'postular'  %}?celular=0939694489&id={{c.anuncio_id}}">Postular</a>
+                                            <h4>Sueldo: ${{c.salario}}</h4>
+                                            <h5>{{c.mensaje}}</h5>
                                         </div>
                                     </div>
-                                    </a>
                                 </div>
-                                
                             	{%endfor%}
                             </div>
+                            <center><a class="genric-btn success circle" href="{%url 'anuncios'  %}">Regresar</a></center>
                         </div>
                     </div>
                 </div>
