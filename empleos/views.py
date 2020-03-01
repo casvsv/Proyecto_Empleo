@@ -26,7 +26,7 @@ def homePage(request):
 		context = {
 			'formulario' : formulario, 
 		}
-	return render(request,'home_page.html',context)
+		return render(request,'home_page.html',context)
 
 def cerrar(request):
 	logout(request)

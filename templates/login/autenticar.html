@@ -1,0 +1,36 @@
+{% extends 'home_page.html' %}
+{% load static %}
+<html lang="en">
+
+
+{% block contenido %}
+    <center>
+    <div class="slider_area">
+        <div class="popup_box ">
+            <div class="popup_inner">
+                <div class="logo text-center">
+                    <a href="#">
+                        <img src="{% static 'img/form-logo.png' %}" alt="">
+                    </a>
+                </div>
+                <h3>Inicio de Sesión</h3>
+                <form method="POST">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12">
+                             <input type="text" name="username">
+                             <input type="password" name="password">
+                        </div>
+                        <div class="col-xl-12">
+                            <button type="submit" class="boxed_btn_green">Iniciar Sesión</button>
+                        </div>
+                    </div>
+                </form>
+                <p>¿No tienes cuenta aún? <a href="{% url 'registrar_persona' %}">Registrate</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    </center>
+    <!-- slider_area_end -->
+{% endblock %}
+</html>

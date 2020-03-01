@@ -5,9 +5,10 @@ from apps.modelo.models import Persona, Anuncio, Postulacion
 from django.contrib import messages
 
 
+@login_required
 def principal(request):
+	usuario = request.user #Petición que es procesada por el framework y obtiene el usuario 
 	return render(request,'pagina_principal_sesion_iniciada.html')
-
 
 def registrar_persona(request):
 	formulario = FormularioPersona(request.POST)
@@ -23,8 +24,12 @@ def registrar_persona(request):
 			persona.celular=datos.get('celular')
 			persona.save()
 			mensaje = 'Se ha registrado correctamente'
+			color = 'success'
+			mensaje_adicional='Porfavor inicie sesión'
 			context = {
-			'mensaje': mensaje
+				'mensaje': mensaje,
+				'color': color,
+				'mensaje_adicional': mensaje_adicional,
 			}
 			return render (request, 'status.html',context)
 	context = {
@@ -32,14 +37,27 @@ def registrar_persona(request):
 	}
 	return render(request, 'persona/registrar_persona.html', context)
 
-
+@login_required
 def mostrar_anuncios(request):
-	lista=Anuncio.objects.all()
-	context={
-		'lista': lista
-	}
-	return render(request,'anuncio/anuncios.html', context)
+	usuario = request.user #Petición que es procesada por el framework y obtiene el usuario 
+	if usuario.exists():
+		lista=Anuncio.objects.all()
+		context={
+			'lista': lista,
+		}
+		return render(request,'anuncio/anuncios.html', context)
+	else:
+		mensaje = 'No ha iniciado sesión aún'
+		color = 'danger'
+		mensaje_adicional='Porfavor inicie sesión'
+		context = {
+			'mensaje': mensaje,
+			'color': color,
+			'mensaje_adicional': mensaje_adicional,
+		}
+		return render(request,'status.html', context)
 
+@login_required
 def ver_postulaciones(request):
 	codigo = request.GET['codigo']
 	anuncio=Anuncio.objects.get(anuncio_id=codigo)
@@ -50,6 +68,8 @@ def ver_postulaciones(request):
 	}
 	return render(request,'postulacion/postulaciones.html', context)
 
+
+@login_required
 def buscar_anuncios(request):
 	consulta = request.GET['consulta']
 	lista=Anuncio.objects.filter(titulo__contains=consulta).order_by('titulo')	
@@ -58,7 +78,7 @@ def buscar_anuncios(request):
 	}
 	return render(request,'anuncio/anuncios.html', context)
 
-
+@login_required
 def crear_anuncio(request):
 	formulario = FormularioAnuncio(request.POST)
 	celu = request.GET['celular']
@@ -88,6 +108,8 @@ def crear_anuncio(request):
 	}
 	return render(request, 'anuncio/crear_anuncio.html', context)
 
+
+@login_required
 def modificar_anuncio(request):
 	anuncio_id = request.GET['id']
 	anuncio = Anuncio.objects.get(anuncio_id = anuncio_id)
@@ -118,7 +140,7 @@ def modificar_anuncio(request):
 		return render(request, 'anuncio/modificar_anuncio.html', context)		
 
 
-
+@login_required
 def eliminar_anuncio(request):
 	formulario = FormularioAnuncio(request.POST)
 	anuncio_id = request.GET['id']
@@ -130,6 +152,8 @@ def eliminar_anuncio(request):
 	}
 	return render (request, 'anuncio/status_anuncio.html',context)
 
+
+@login_required
 def postular(request):
 	formulario = FormularioPostulacion(request.POST)
 	celu = request.GET['celular']

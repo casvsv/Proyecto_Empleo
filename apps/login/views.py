@@ -12,24 +12,23 @@ def ingresar(request):
 			clave = request.POST['password']
 			user = authenticate(username = usuario, password = clave)
 			if user is not None:
-				if user.is_active:
-					login(request, user)
-					return HttpResponseRedirect(reverse('persona'))
-				else:
-					print ('Usuario desactivado')
+				login(request, user)
+				return HttpResponseRedirect(reverse('persona'))
 			else:
-				print ('Usuario y/o contraseña incorrectos')		
+				formulario = FormularioLogin()
+				context = {
+					'formulario' : formulario,
+				}
+				return render (request, 'login/autenticar.html', context)	
 	else:
 		formulario = FormularioLogin()
-	context = {
-		'formulario' : formulario, 
-	}
-	return render (request, 'home_page', context)
+		context = {
+			'formulario' : formulario,
+		}
+		return render (request, 'login/autenticar.html', context)
+
 
 def cerrar(request):
 	logout(request)
-	formulario = FormularioLogin()
-	context = {
-		'formulario' : formulario, 
-	}
-	return render (request, 'home_page', context)
+	return HttpResponseRedirect(reverse('home_page'))
+
