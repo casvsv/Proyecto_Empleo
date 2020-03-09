@@ -6,7 +6,7 @@
     {% block scripts %}
     <script>
                 function buscar(){
-                var url = "http://127.0.0.1:8000/persona/anuncios/buscar_anuncio?consulta=";
+                var url = "http://192.168.1.17:8000/persona/anuncios/buscar_anuncio?consulta=";
                 var consulta = $('#busqueda').val();
                 url=url+consulta;
                 window.location=url;
