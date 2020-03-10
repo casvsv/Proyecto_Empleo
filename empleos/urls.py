@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', include('apps.modelo.urls')),
     path('persona/', include('apps.persona.urls'), name='persona'),
-    path('login/', include('apps.login.urls')),
+    path('login/', include('apps.login.urls'), name='login'),
     path('', views.homePage, name='home_page'),
     path('logout', views.cerrar, name='cerrar_sesion'),
 ]

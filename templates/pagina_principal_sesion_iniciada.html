@@ -6,7 +6,7 @@
     {% block scripts %}
     <script>
                 function buscar(){
-                var url = "http://192.168.1.17:8000/persona/anuncios/buscar_anuncio?consulta=";
+                var url = "http://192.168.1.19:8000/persona/anuncios/buscar_anuncio?consulta=";
                 var consulta = $('#busqueda').val();
                 url=url+consulta;
                 window.location=url;
@@ -35,7 +35,7 @@
                             <h3>Hostza</h3>
                             <div class="find_dowmain">
                                 <form action="#" class="find_dowmain_form">
-                                    <input type="text" id="busqueda" placeholder="Ingrese el tipo de empleo que busca" style="margin-left: -4%;">
+                                    <input type="text" id="busqueda" placeholder="Ingrese el tipo de empleo que busca" style="margin-left: -4%;" required>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a id="botonbuscar"  class="btn btn-success btn-lg" onclick="buscar()" style="color: white;">Buscar</a>
                                         <a  class="btn btn-info btn-lg" href="{%url 'anuncios'  %}" style="color: white;">Ver Todos</a>

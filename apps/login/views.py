@@ -18,12 +18,16 @@ def ingresar(request):
 				formulario = FormularioLogin()
 				context = {
 					'formulario' : formulario,
+					'advertencia' : "Datos incorrectos",
+					'color':"danger", 
 				}
 				return render (request, 'login/autenticar.html', context)	
 	else:
 		formulario = FormularioLogin()
 		context = {
 			'formulario' : formulario,
+			'advertencia' : "Bienvenido, por favor inicia sesión!",
+			'color':'success',
 		}
 		return render (request, 'login/autenticar.html', context)
 

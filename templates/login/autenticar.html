@@ -2,7 +2,6 @@
 {% load static %}
 <html lang="en">
 
-
 {% block contenido %}
     <center>
     <div class="slider_area">
@@ -12,13 +11,16 @@
                     <a href="#">
                         <img src="{% static 'img/form-logo.png' %}" alt="">
                     </a>
+                    <div class="alert alert-{{color}}" role="alert">
+                        {{ advertencia }}
+                    </div>
                 </div>
                 <h3>Inicio de Sesión</h3>
                 <form method="POST">{% csrf_token %}
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
-                             <input type="text" name="username">
-                             <input type="password" name="password">
+                             <input type="text" name="username" required="Por favor, ingrese su usuario">
+                             <input type="password" name="password" required="Por favor, ingrese su contraseña">
                         </div>
                         <div class="col-xl-12">
                             <button type="submit" class="boxed_btn_green">Iniciar Sesión</button>

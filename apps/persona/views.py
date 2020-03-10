@@ -86,9 +86,15 @@ def buscar_anuncios(request):
 	if usuario!='null':
 		consulta = request.GET['consulta']
 		lista=Anuncio.objects.filter(titulo__contains=consulta).order_by('titulo')	
-		context={
-			'lista': lista
-		}
+		if lista=='null':
+			context={
+				'mensaje': 'Lo sentimos, aún no hay empleos disponibles para ese campo',
+				'color':'danger',
+			}
+		else:	
+			context={
+				'lista': lista
+			}
 		return render(request,'anuncio/anuncios.html', context)
 
 @login_required
